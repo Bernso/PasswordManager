@@ -44,10 +44,14 @@ def check_passes():
             return data
 
 def remove_passwords():
-    with open('passwords.yes', 'w') as passes:
-        passes.write('')
-    messagebox.showinfo("Done", "Passwords removed successfully.")
-    update_password_text()
+    answer = messagebox.askyesno('Question', 'Are you sure you want to do this?')
+    if not answer:
+        return
+    else:
+        with open('passwords.yes', 'w') as passes:
+            passes.write('')
+        messagebox.showinfo("Done", "Passwords removed successfully.")
+        update_password_text()
 
 
 data = check_passes()
