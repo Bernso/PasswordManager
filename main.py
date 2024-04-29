@@ -14,13 +14,28 @@ except FileNotFoundError as e:
         data = ""
         newPassFile.close()
 
-
+def save_password():
+    with open('passwords.txt', 'w') as newPassFile:
+        newPassFile.write(password_text.get(1.0, tk.END))
+        newPassFile.close()
 
 password_text = tk.Text(app, width=80, height=20)
 password_text.insert(tk.END, data)
 password_text.grid(row=0, column=0)
 
 
+
+usernameInput = tk.Entry(app, width=35)
+usernameInput.grid(row=1, column=1)
+
+passwordInput = tk.Entry(app, width=35)
+passwordInput.grid(row=2, column=1)
+
+websiteInput = tk.Entry(app, width=35)
+websiteInput.grid(row=3, column=1)
+
+addButton = tk.Button(app, text='Add', width=35, command=save_password)
+addButton.grid(row=4, column=1)
 
 if __name__ == '__main__':
     app.mainloop()
