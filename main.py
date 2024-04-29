@@ -21,20 +21,27 @@ def save_password():
 
 password_text = tk.Text(app, width=80, height=20)
 password_text.insert(tk.END, data)
-password_text.grid(row=0, column=0)
+password_text.grid(columnspan=5)
 
-
+usernameLabel = tk.Label(app, text='Username')
+usernameLabel.grid(row=1, column=0)
 
 usernameInput = tk.Entry(app, width=35)
 usernameInput.grid(row=1, column=1)
 
+passwordLabel = tk.Label(app, text='Password')
+passwordLabel.grid(row=2, column=0)
+
 passwordInput = tk.Entry(app, width=35)
 passwordInput.grid(row=2, column=1)
+
+websiteLabel = tk.Label(app, text='Website')
+websiteLabel.grid(row=3, column=0)
 
 websiteInput = tk.Entry(app, width=35)
 websiteInput.grid(row=3, column=1)
 
-addButton = tk.Button(app, text='Add', width=35, command=save_password)
+addButton = tk.Button(app, text='Add', width=15, command=save_password)
 addButton.grid(row=4, column=1)
 
 if __name__ == '__main__':
