@@ -6,8 +6,12 @@ try:
     import tkinter as tk
     from tkinter import ttk, messagebox
     import pyperclip
+    import webbrowser
+
 except ImportError as e:
     print(f"Error importing: {e}") 
+    input()
+    quit()
 
 # Constants
 DATA_FILE = 'passwords.json'
@@ -73,6 +77,9 @@ def search_passwords():
     search_term = entry_search.get().lower()
     results = [entry for entry in data if search_term in entry['website'].lower()]
     display_results(results)
+    
+    # Update search result label
+    search_result_label.configure(text=f"{len(results)} results found")
 
 def delete_password():
     selected_index = listbox.curselection()
@@ -90,7 +97,7 @@ def view_password():
         website = selected_text.split(' | ')[0].split(': ')[1]
         for entry in data:
             if entry['website'] == website:
-                messagebox.showinfo("Password", f"Password: {entry['password']}")
+                messagebox.showinfo("Password", f"Password: {entry['password']}\n^Copied to clipboard")
                 pyperclip.copy(entry['password'])
                 break
 
@@ -104,13 +111,25 @@ def display_results(results):
     for entry in results:
         listbox.insert(tk.END, f"Website: {entry['website']} | Username: {entry['username']}")
 
+def openWebsite():
+    selected_index = listbox.curselection()
+    if selected_index:
+        selected_text = listbox.get(selected_index[0])
+        website = selected_text.split(' | ')[0].split(': ')[1]
+        for entry in data:
+            if entry['website'] == website:
+                webbrowser.open(entry['website'])
+                break
+
 app = ctk.CTk()
 app.geometry("600x700")
 app.title("Advanced Password Manager")
 
+
 # Tab control
 tab_control = ttk.Notebook(app)
 tab_control.pack(expand=1, fill='both')
+
 
 # Add password tab
 add_password_tab = ttk.Frame(tab_control)
@@ -123,6 +142,8 @@ tab_control.add(search_password_tab, text='Search Password')
 # Display password tab
 display_password_tab = ttk.Frame(tab_control)
 tab_control.add(display_password_tab, text='View Passwords')
+
+
 
 # Frame for Add Password tab
 frame_add = ctk.CTkFrame(add_password_tab)
@@ -146,6 +167,8 @@ entry_website.pack(pady=5)
 button_add = ctk.CTkButton(frame_add, text="Add Password", command=add_password)
 button_add.pack(pady=10)
 
+
+
 # Frame for Search Password tab
 frame_search = ctk.CTkFrame(search_password_tab)
 frame_search.pack(pady=20, padx=20, fill="both", expand=True)
@@ -157,6 +180,11 @@ entry_search.pack(pady=5)
 button_search = ctk.CTkButton(frame_search, text="Search", command=search_passwords)
 button_search.pack(pady=5)
 
+search_result_label = ctk.CTkLabel(frame_search, text="")
+search_result_label.pack(pady=5)
+
+
+
 # Frame for Display Passwords tab
 frame_display = ctk.CTkFrame(display_password_tab)
 frame_display.pack(pady=20, padx=20, fill="both", expand=True)
@@ -167,11 +195,17 @@ button_delete.pack(pady=10)
 button_view = ctk.CTkButton(frame_display, text="View Password", command=view_password)
 button_view.pack(pady=10)
 
+openWebsiteButton = ctk.CTkButton(frame_display, text="Open Website", command=openWebsite)
+openWebsiteButton.pack(pady=10)
+
 label_output = ctk.CTkLabel(frame_display, text="Stored Passwords:")
 label_output.pack(pady=5)
 listbox = tk.Listbox(frame_display, height=10)
 listbox.pack(pady=5, fill="both", expand=True)
 
-display_passwords()
 
-app.mainloop()
+
+
+if __name__ == "__main__":
+    display_passwords()
+    app.mainloop()

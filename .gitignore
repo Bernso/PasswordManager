@@ -4,3 +4,5 @@ passwords.json
 dist
 secret.key
 .gitignore
+test.py
+passwords.yes
