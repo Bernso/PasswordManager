@@ -166,7 +166,7 @@ label_website.pack(pady=5)
 entry_website = ctk.CTkEntry(frame_add, width=400)
 entry_website.pack(pady=5)
 
-button_add = ctk.CTkButton(frame_add, text="Add Password", command=add_password, width=300, height=35)
+button_add = ctk.CTkButton(frame_add, text="Add Password", command=add_password, width=200, height=35)
 button_add.pack(pady=40)
 
 
