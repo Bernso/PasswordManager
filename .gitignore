@@ -2,3 +2,5 @@
 testingFile.py
 passwords.json
 dist
+secret.key
+.gitignore
