@@ -104,26 +104,6 @@ def display_results(results):
     for entry in results:
         listbox.insert(tk.END, f"Website: {entry['website']} | Username: {entry['username']}")
 
-
-# Dark theme configuration
-# Dark theme configuration
-dark_theme = {
-    "CTkFrame": {"bg_color": "#2C2F33"},
-    "CTkLabel": {"bg_color": "#2C2F33", "fg_color": "#FFFFFF"},
-    "CTkEntry": {"bg_color": "#2C2F33", "fg_color": "#FFFFFF"},
-    "CTkButton": {"bg_color": "#7289DA", "fg_color": "#FFFFFF"},
-    "Listbox": {"bg_color": "#2C2F33", "fg_color": "#FFFFFF"},
-}
-
-
-
-# Configure style
-style = ttk.Style()
-style.theme_create("DarkTheme", parent="alt", settings=dark_theme)
-style.theme_use("DarkTheme")
-
-
-
 app = ctk.CTk()
 app.geometry("600x700")
 app.title("Advanced Password Manager")
@@ -142,7 +122,7 @@ tab_control.add(search_password_tab, text='Search Password')
 
 # Display password tab
 display_password_tab = ttk.Frame(tab_control)
-tab_control.add(display_password_tab, text='Display Passwords')
+tab_control.add(display_password_tab, text='View Passwords')
 
 # Frame for Add Password tab
 frame_add = ctk.CTkFrame(add_password_tab)
