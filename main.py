@@ -82,13 +82,15 @@ def search_passwords():
     search_result_label.configure(text=f"{len(results)} results found")
 
 def delete_password():
-    selected_index = listbox.curselection()
-    if selected_index:
-        selected_text = listbox.get(selected_index[0])
-        website = selected_text.split(' | ')[0].split(': ')[1]
-        data[:] = [entry for entry in data if entry['website'] != website]
-        save_data()
-        display_passwords()
+    deleteYesorNo = messagebox.askyesno("Are you sure?", f"Are you sure you want to delete this password?")
+    if deleteYesorNo:    
+        selected_index = listbox.curselection()
+        if selected_index:
+            selected_text = listbox.get(selected_index[0])
+            website = selected_text.split(' | ')[0].split(': ')[1]
+            data[:] = [entry for entry in data if entry['website'] != website]
+            save_data()
+            display_passwords()
 
 def view_password():
     selected_index = listbox.curselection()
