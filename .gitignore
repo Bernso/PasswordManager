@@ -2,7 +2,7 @@
 testingFile.py
 passwords.json
 dist
-secret.key
 .gitignore
 test.py
 passwords.yes
+DO_NOT_DELETE.key

@@ -15,7 +15,7 @@ except ImportError as e:
 
 # Constants
 DATA_FILE = 'passwords.json'
-KEY_FILE = 'secret.key'
+KEY_FILE = 'DO_NOT_DELETE.key'
 
 # Generate or load encryption key
 def load_key():
