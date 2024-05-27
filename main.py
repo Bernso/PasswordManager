@@ -82,7 +82,7 @@ def search_passwords():
     search_result_label.configure(text=f"{len(results)} results found")
 
 def delete_password():
-    deleteYesorNo = messagebox.askyesno("Are you sure?", f"Are you sure you want to delete this password?")
+    deleteYesorNo = messagebox.askyesno("Confirmation", f"Are you sure you want to delete this password?")
     if deleteYesorNo:    
         selected_index = listbox.curselection()
         if selected_index:
@@ -153,31 +153,31 @@ frame_add.pack(pady=20, padx=20, fill="both", expand=True)
 
 label_username = ctk.CTkLabel(frame_add, text="Username:")
 label_username.pack(pady=5)
-entry_username = ctk.CTkEntry(frame_add)
+entry_username = ctk.CTkEntry(frame_add, width=400)
 entry_username.pack(pady=5)
 
 label_password = ctk.CTkLabel(frame_add, text="Password:")
 label_password.pack(pady=5)
-entry_password = ctk.CTkEntry(frame_add, show='*')  # Masking password entry
+entry_password = ctk.CTkEntry(frame_add, show='*', width=400)  # Masking password entry
 entry_password.pack(pady=5)
 
 label_website = ctk.CTkLabel(frame_add, text="Website:")
 label_website.pack(pady=5)
-entry_website = ctk.CTkEntry(frame_add)
+entry_website = ctk.CTkEntry(frame_add, width=400)
 entry_website.pack(pady=5)
 
-button_add = ctk.CTkButton(frame_add, text="Add Password", command=add_password)
-button_add.pack(pady=10)
+button_add = ctk.CTkButton(frame_add, text="Add Password", command=add_password, width=200, height=35)
+button_add.pack(pady=40)
 
 
 
-# Frame for Search Password tab
+# Frame for Search Website tab
 frame_search = ctk.CTkFrame(search_password_tab)
 frame_search.pack(pady=20, padx=20, fill="both", expand=True)
 
 label_search = ctk.CTkLabel(frame_search, text="Search Website:")
 label_search.pack(pady=5)
-entry_search = ctk.CTkEntry(frame_search)
+entry_search = ctk.CTkEntry(frame_search, width=400)
 entry_search.pack(pady=5)
 button_search = ctk.CTkButton(frame_search, text="Search", command=search_passwords)
 button_search.pack(pady=5)
@@ -192,18 +192,18 @@ frame_display = ctk.CTkFrame(display_password_tab)
 frame_display.pack(pady=20, padx=20, fill="both", expand=True)
 
 button_delete = ctk.CTkButton(frame_display, text="Delete Selected", command=delete_password)
-button_delete.pack(pady=10)
+button_delete.grid(row=0, column=0, padx=20, pady=20)
 
 button_view = ctk.CTkButton(frame_display, text="View Password", command=view_password)
-button_view.pack(pady=10)
+button_view.grid(row=0, column=1, padx=20, pady=20)
 
 openWebsiteButton = ctk.CTkButton(frame_display, text="Open Website", command=openWebsite)
-openWebsiteButton.pack(pady=10)
+openWebsiteButton.grid(row=0, column=2, padx=20, pady=20)
 
 label_output = ctk.CTkLabel(frame_display, text="Stored Passwords:")
-label_output.pack(pady=5)
-listbox = tk.Listbox(frame_display, height=10)
-listbox.pack(pady=5, fill="both", expand=True)
+label_output.grid(row=1, column=1)
+listbox = tk.Listbox(frame_display, height=30, width=80)
+listbox.grid(row=2, column=0, columnspan=3)
 
 
 

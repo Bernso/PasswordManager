@@ -171,13 +171,13 @@ button_add.pack(pady=40)
 
 
 
-# Frame for Search Password tab
+# Frame for Search Website tab
 frame_search = ctk.CTkFrame(search_password_tab)
 frame_search.pack(pady=20, padx=20, fill="both", expand=True)
 
 label_search = ctk.CTkLabel(frame_search, text="Search Website:")
 label_search.pack(pady=5)
-entry_search = ctk.CTkEntry(frame_search)
+entry_search = ctk.CTkEntry(frame_search, width=400)
 entry_search.pack(pady=5)
 button_search = ctk.CTkButton(frame_search, text="Search", command=search_passwords)
 button_search.pack(pady=5)
